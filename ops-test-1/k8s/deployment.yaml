@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sre-app
+  labels:
+    app: sre
 spec:
   replicas: 2
   selector:
@@ -14,13 +16,13 @@ spec:
     spec:
       containers:
       - name: sre-app
-        image: sre-candidate:latest
+        image: emon110852/sre-assessment:latest
+        imagePullPolicy: Always
         ports:
-        - containerPort: 80
+        - containerPort: 8080
         readinessProbe:
           httpGet:
             path: /healthz
-            port: 80
+            port: 8080
           initialDelaySeconds: 2
           periodSeconds: 5
-
