@@ -125,3 +125,13 @@ curl http://localhost:8080/healthz
 6. **Resource Management**: Setting requests/limits prevents resource contention
 
 <img width="1371" height="242" alt="Screenshot 2025-11-25 215333" src="https://github.com/user-attachments/assets/82bdbc68-78b6-4ba9-81b2-a73cd5119b4a" />
+
+
+## Create CI
+
+- Automated validation on each change: The workflow compiles  Python, builds the Docker image, and smoke‑tests / and /healthz. This catches mistakes early (syntax errors, broken endpoints, mis‑built images).
+- Repeatability: CI runs in a clean GitHub runner every time, ensuring  app builds and starts from scratch—not just on  local machine.
+- Confidence for Kubernetes rollout: A container that passes basic health checks in CI is far more likely to pass readiness/liveness probes in cluster.
+- Fast feedback for PRs: Contributors see immediate pass/fail on their pull requests before merging, reducing regressions.
+- Optional publishing: When  uncomment the Docker Hub steps and add secrets, CI can publish emon110852/sre-assessment:latest automatically on pushes to main, making deployments consistent and quick.
+
