@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: advanced-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: advanced
+  template:
+    metadata:
+      labels:
+        app: advanced
+    spec:
+      containers:
+      - name: advanced-app
+        image: advanced-candidate:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 80
+          initialDelaySeconds: 1
+          periodSeconds: 3
+        resources:
+          limits:
+            cpu: "50m"
+            memory: "50Mi"
+      - name: sidecar
+        image: advanced-sidecar:latest
+        ports:
+        - containerPort: 9000
