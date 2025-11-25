@@ -38,6 +38,12 @@ sre-l2-advanced-assessment/
 ├── logs/
 │   ├── app.log
 │   └── sidecar.log
+|
+├── iac/
+│   ├── main.tf
+│   └── modules/
+│       └── ec2/
+│           ├── main.tf
 │
 └── TROUBLESHOOTING.md   (you will fill this)
 ```
@@ -163,6 +169,33 @@ Write a professional incident report including:
 
 Save as:  
 `incident-report.md`
+
+---
+
+## Advance: Fix the Terraform Configuration (20 points)
+
+The Terraform project intentionally includes:
+
+* A wrong variable type
+* Missing variables
+* A non-existent subnet
+* Invalid AMI
+* Module missing inputs
+* Module outputs referenced incorrectly
+* A security group that exposes ALL ports
+* Deprecated AWS provider version
+* Root module output referencing a non-existent output
+
+Tasks:
+
+* Correct variable types
+* Fix missing module variables
+* Replace invalid AMI
+* Remove references to non-existing resources
+* Lock down the security group
+* Update AWS provider version
+* Fix module output references
+* Validate the module structure
 
 ---
 
