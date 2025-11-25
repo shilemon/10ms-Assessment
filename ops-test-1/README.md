@@ -1,3 +1,14 @@
+Name:Emon Shil
+Email: emonshil.htuc@gmail.com
+Time taken: 3hours
+Assumptions:
+- Kind/Minikube available for local Kubernetes testing
+- Docker installed and configured
+- kubectl installed and configured
+- Docker Hub account available for image registry
+- Basic understanding of Python Flask applications
+
+
 # 🔧 SRE Assessment 1
 
 Welcome to the SRE Level-1 assessment.  
