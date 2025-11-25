@@ -1,6 +1,6 @@
-Name:Emon Shil
-Email: emonshil.htuc@gmail.com
-Time taken: 3hours
+- Name:Emon Shil
+- Email: emonshil.htuc@gmail.com
+- Time taken: 3hours
 Assumptions:
 - Kind/Minikube available for local Kubernetes testing
 - Docker installed and configured
