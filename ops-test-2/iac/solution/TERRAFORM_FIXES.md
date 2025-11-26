@@ -195,3 +195,9 @@ Module inputs/outputs fully aligned
 AWS provider up-to-date
 
 Code is production-ready and secure
+
+<img width="1767" height="892" alt="Screenshot 2025-11-26 160435" src="https://github.com/user-attachments/assets/f81926b8-9995-4528-a4e3-0e0a77adcf8d" />
+
+<img width="1152" height="301" alt="Screenshot 2025-11-26 160457" src="https://github.com/user-attachments/assets/cff30901-a11c-4a70-adbd-6c86411e425d" />
+
+
