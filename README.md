@@ -27,10 +27,10 @@ Environment used (kind/minikube): kind (Kubernetes in Docker)
 
 Assumptions:
 
-Monitoring stack (Prometheus + Grafana + metrics-server) is required for validating HPA, pod health, and resource usage.
+- Monitoring stack (Prometheus + Grafana + metrics-server) is required for validating HPA, pod health, and resource usage.
+- Docker images must be rebuilt and pushed to a registry for KIND to pull correctly.
+- Port configuration and probe endpoints are assumed to be customizable as part of the assessment.
+- Grafana dashboards and metrics verification are acceptable evidence of monitoring setup.
 
-Docker images must be rebuilt and pushed to a registry for KIND to pull correctly.
+<img width="1182" height="74" alt="image" src="https://github.com/user-attachments/assets/84215f6b-d95c-4203-bead-c25279f840cd" />
 
-Port configuration and probe endpoints are assumed to be customizable as part of the assessment.
-
-Grafana dashboards and metrics verification are acceptable evidence of monitoring setup.
