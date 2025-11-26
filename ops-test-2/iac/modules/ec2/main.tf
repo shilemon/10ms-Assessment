@@ -1,10 +1,9 @@
 resource "aws_instance" "vm" {
-  ami           = "ami-123456"   
-  instance_type = var.instance_type
+  ami                    = "ami-00d8fc944fb171e29" # ubuntu
+  instance_type          = var.instance_type
+  vpc_security_group_ids = [var.sg_id]
 
-  vpc_security_group_ids = [var.sg_id]  
-}
-
-output "public_dns" {
-  value = aws_instance.vm.public_dns
+  tags = {
+    Name = "10ms-demo-ec2"
+  }
 }

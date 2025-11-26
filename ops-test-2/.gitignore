@@ -1,0 +1,37 @@
+# Terraform
+*.tfstate
+*.tfstate.backup
+.terraform/
+.terraform/*
+**/.terraform/
+**/*.tfstate
+**/*.tfstate.backup
+.terraform.lock.hcl
+**/.terraform.lock.hcl
+
+# AWS
+aws/
+awscilv2.zip
+
+# Application binaries
+*.exe
+*.tar.gz
+*.out
+*.o
+*.class
+
+# Go build
+bin/
+vendor/
+app/go1.*.tar.gz
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Logs
+*.log
+
+# Temp files
+*.swp
+*.tmp

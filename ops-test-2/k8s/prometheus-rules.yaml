@@ -1,0 +1,32 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: custom-alerts
+  namespace: monitoring
+spec:
+  groups:
+  - name: resource-limit-alerts
+    rules:
+    - alert: ContainerMissingResourceLimits
+      expr: |
+        kube_pod_container_resource_limits_cpu_cores == 0
+        OR
+        kube_pod_container_resource_limits_memory_bytes == 0
+      for: 2m
+      labels:
+        severity: warning
+      annotations:
+        summary: "Container missing CPU or memory limits"
+        description: "Pod {{ $labels.pod }} in namespace {{ $labels.namespace }} has **no resource limits**."
+
+  - name: high-latency-alerts
+    rules:
+    - alert: HighRequestLatency
+      expr: |
+        histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket[5m])) by (le)) > 0.5
+      for: 5m
+      labels:
+        severity: critical
+      annotations:
+        summary: "High HTTP request latency"
+        description: "95th percentile latency is higher than 0.5 seconds."

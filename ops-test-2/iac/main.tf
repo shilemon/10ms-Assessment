@@ -1,9 +1,10 @@
 terraform {
   required_version = ">= 1.0"
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 3.0"
+      version = ">= 4.0"
     }
   }
 }
@@ -12,28 +13,16 @@ provider "aws" {
   region = var.region
 }
 
-variable "region" {
-  default = 123     
-}
-
-variable "instance_type" {
-  type = number     
-  default = "t2.micro"
-}
-
-module "ec2_module" {
-  source = "./modules/ec2"
-  
-  instance_type = var.instance_type
-  subnet_id     = aws_subnet.main.id  
-}
-
+# ---------------------------------------
+# Security Group
+# ---------------------------------------
 resource "aws_security_group" "sg" {
-  name = "broken-sg"
+  name = "demo-sg"
 
   ingress {
-    from_port   = 0       
-    to_port     = 65535
+    description = "SSH"
+    from_port   = 22
+    to_port     = 22
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -46,6 +35,12 @@ resource "aws_security_group" "sg" {
   }
 }
 
-output "ec2_ip" {
-  value = module.ec2_module.public_ip 
+# ---------------------------------------
+# EC2 Module
+# ---------------------------------------
+module "ec2_module" {
+  source        = "./modules/ec2"
+  instance_type = var.instance_type
+  sg_id         = aws_security_group.sg.id
 }
+

@@ -1,34 +1,43 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: advanced-app
+  name: sre-app
+  labels:
+    app: sre-app
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
-      app: advanced
+      app: sre-app
   template:
     metadata:
       labels:
-        app: advanced
+        app: sre-app
     spec:
       containers:
-      - name: advanced-app
-        image: advanced-candidate:latest
+      - name: app
+        image: emon110852/sre-app2:latest
         imagePullPolicy: Always
         ports:
-        - containerPort: 80
+        - containerPort: 8080
         readinessProbe:
           httpGet:
             path: /healthz
-            port: 80
-          initialDelaySeconds: 1
-          periodSeconds: 3
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 2
+          failureThreshold: 3
         resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
           limits:
-            cpu: "50m"
-            memory: "50Mi"
+            memory: "512Mi"
+            cpu: "500m"
+
       - name: sidecar
-        image: advanced-sidecar:latest
+        image: emon110852/sidecar:latest   # change if needed
+        imagePullPolicy: Always
         ports:
-        - containerPort: 9000
+        - containerPort: 8081
